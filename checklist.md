@@ -1,4 +1,4 @@
-# Elicitation Checklist 
+# Elicitation Best Practices 
 This checklist is designed to help us adopt **best practices for conducting elicitation experiments**. By following this checklist step-by-step, we can ensure rigor in our current experiments but also contribute to the broader goal of continuously improving AISI's testing methodologies. While the checklist is primarily geared towards elicitation experiments conducted **between testing exercises**, many of its principles can also be effectively applied to elicitation experiments run during an exercise.
 
 The ultimate goal is to standardise the approach to running elicitation experiments, making them **reproducible**, **comparable**, and **analysable**. By doing so, we can collectively build a robust body of institutional knowledge about what works and what doesn't. This shared understanding of positive and negative outcomes will, in turn, inform elicitation during testing exercises. 
