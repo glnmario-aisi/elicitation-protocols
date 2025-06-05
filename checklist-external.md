@@ -1,5 +1,5 @@
 # Elicitation Best Practices 
-This checklist is designed to the adoption of **best practices for conducting elicitation experiments**. Following this checklist step-by-step, ensures rigor in current experiments but also contributes to the broader goal of continuously improving testing methodologies. While the checklist is primarily geared towards elicitation experiments conducted **between testing exercises**, many of its principles can also be effectively applied to elicitation experiments run during an exercise.
+This checklist is designed to facilitate the adoption of **best practices for conducting elicitation experiments**. Following this checklist step-by-step ensures rigor in current experiments but also contributes to the broader goal of continuously improving testing methodologies. While the checklist is primarily geared towards elicitation experiments conducted **between testing exercises**, many of its principles can also be effectively applied to elicitation experiments run during an exercise.
 
 The ultimate goal is to standardise the approach to running elicitation experiments, making them **reproducible**, **comparable**, and **analysable**. By doing so, we can collectively build a robust body of knowledge about what works and what doesn't. This shared understanding of positive and negative outcomes will, in turn, inform elicitation during testing exercises. 
 
@@ -24,7 +24,7 @@ The ultimate goal is to standardise the approach to running elicitation experime
   - It is often beneficial to have **multiple baselines** for better contextualisation. For example, if setup X is currently the best-tested option, including X as a baseline will provide valuable context.
   </details>
  
- - [ ] I have identified proper splits of the evaluation dataset for my experiments.
+ - [ ] I have identified proper splits of the evaluation dataset for my experiments. **Note**: these splits apply to elicitation experiments involving no model training. This is the most frequent case. Fine-tuning experiments require an additional validation set: i.e., like in a classic ML setting, the model should be trained on a training set and validated on a validation set (e.g., two disjoint portions of the tuning set below).
      - **Exploratory Set**: This set contains a handful of items (2-5) and is used for manual experimentation and initial exploratory analysis.
      - **Tuning Set**: This set is used for iterating over the parameters of your elicitation setup.
      - **Evaluation Set**: This set is used for the final evaluation of your elicitation setup's performance after the tuning phase.
