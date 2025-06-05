@@ -3,10 +3,6 @@ This checklist is designed to facilitate the adoption of **best practices for co
 
 The ultimate goal is to standardise the approach to running elicitation experiments, making them **reproducible**, **comparable**, and **analysable**. By doing so, we can collectively build a robust body of knowledge about what works and what doesn't. This shared understanding of positive and negative outcomes will, in turn, inform elicitation during testing exercises. 
 
-<!--
-🔴 High Priority 🟠 Medium Priority 🟢 Low Priority
--->
-
 ## Experimental setup 
 
 - [ ] I have set a compute budget for this elicitation experiment.
@@ -24,7 +20,7 @@ The ultimate goal is to standardise the approach to running elicitation experime
   - It is often beneficial to have **multiple baselines** for better contextualisation. For example, if setup X is currently the best-tested option, including X as a baseline will provide valuable context.
   </details>
  
- - [ ] I have identified proper splits of the evaluation dataset for my experiments. **Note**: these splits apply to elicitation experiments involving no model training. This is the most frequent case. Fine-tuning experiments require an additional validation set: i.e., like in a classic ML setting, the model should be trained on a training set and validated on a validation set (e.g., two disjoint portions of the tuning set below).
+ - [ ] I have identified proper splits of the evaluation dataset for my experiments. **Note**: these splits apply to elicitation experiments involving no model training. This is the most frequent case. Fine-tuning experiments require an additional validation set; see next point.
      - **Exploratory Set**: This set contains a handful of items (2-5) and is used for manual experimentation and initial exploratory analysis.
      - **Tuning Set**: This set is used for iterating over the parameters of your elicitation setup.
      - **Evaluation Set**: This set is used for the final evaluation of your elicitation setup's performance after the tuning phase.
@@ -34,7 +30,7 @@ The ultimate goal is to standardise the approach to running elicitation experime
      Note: these three sets should be _disjoint_ (i.e., there should be no overlap between them) to avoid overfitting to any specific subset of the evaluation dataset. Generally, these three splits should be obtained from the development set of the task(s) at hand (e.g., the "Cyber dev set"). I should _not_ look at the test set (e.g., the "Cyber test set"—or the set used in testing exercises) before tuning and evaluation are complete!
 </details>
 
-- [ ] If I am using a finetuned model, I have made sure that there is no overlap between the fine-tuning data and the tuning and evaluation sets.
+- [ ] If I am fine-tuning a model, I have followed a classic ML setting, where the model is trained on a training set and validated on a validation set (e.g., two disjoint portions of the tuning set above). I have made sure that there is no overlap between the training (fine-tuning) set, the validation set, and the evaluation set.
 
 ## Eval logs
 
