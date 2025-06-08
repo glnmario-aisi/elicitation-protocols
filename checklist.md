@@ -39,15 +39,15 @@ The ultimate goal is to standardise the approach to running elicitation experime
  
  - [ ] I have identified proper splits of the evaluation dataset for my experiments. **Note**: these splits apply to elicitation experiments involving no model training. This is the most frequent case. Fine-tuning experiments require an additional validation set; see next point.
      - **Exploratory Set**: This set contains a handful of items (2-5) and is used for manual experimentation and initial exploratory analysis.
-     - **Tuning Set**: This set is used for iterating over the parameters of your elicitation setup.
-     - **Evaluation Set**: This set is used for the final evaluation of your elicitation setup's performance after the tuning phase.
+     - **Hill-climbing Set**: This set is used for iterating over the parameters of your elicitation setup.
+     - **Evaluation Set**: This set is used for the final evaluation of your elicitation setup's performance after the hill-climbing phase.
      <details>
      <summary>How to define these three splits?</summary>
      
-     Note: these three sets should be _disjoint_ (i.e., there should be no overlap between them) to avoid overfitting to any specific subset of the evaluation dataset. Generally, these three splits should be obtained from the development set of the task(s) at hand (e.g., the "Cyber dev set"). I should _not_ look at the test set (e.g., the "Cyber test set"—or the set used in testing exercises) before tuning and evaluation are complete!
+     Note: these three sets should be _disjoint_ (i.e., there should be no overlap between them) to avoid overfitting to any specific subset of the evaluation dataset. Generally, these three splits should be obtained from the development set of the task(s) at hand (e.g., the "Cyber dev set"). I should _not_ look at the test set (e.g., the "Cyber test set"—or the set used in testing exercises) before hill-climbing and evaluation are complete!
 </details>
 
-- [ ] If I am fine-tuning a model, I have followed a classic ML setting, where the model is trained on a training set and validated on a validation set (e.g., two disjoint portions of the tuning set above). I have made sure that there is no overlap between the training (fine-tuning) set, the validation set, and the evaluation set.
+- [ ] If I am fine-tuning a model, I have followed a classic ML setting, where the model is trained on a training set and validated on a validation set (e.g., two disjoint portions of the hill-climbing set above). I have made sure that there is no overlap between the training (fine-tuning) set, the validation set, and the evaluation set.
 
 - [ ] I have checked with [#ru-elicitation](https://aisecurityinstitute.slack.com/archives/C06HFEN9RH6) and [#soe-general](https://aisecurityinstitute.slack.com/archives/C07SW4U3GCR) that my experimental design is valid.
      <details><summary>What should I ask about and why?</summary> 
@@ -84,7 +84,7 @@ The ultimate goal is to standardise the approach to running elicitation experime
 
 ## Eval logs
 
-Before iterating over the tuning set,  it is crucial to ensure that all required information is accurately logged. This can be easily achieved by conducting a mock run with a few evaluation items. In particular:
+Before iterating over the hill-climbing set,  it is crucial to ensure that all required information is accurately logged. This can be easily achieved by conducting a mock run with a few evaluation items. In particular:
 
 - [ ] I have verified that the model details and elicitation setup are fully logged in the eval metadata. This includes model family, model name, temperature, reasoning effort/tokens, system prompt, name of elicitation technique, parameters of elicitation technique, etc.—*all parameters that would allow someone to recreate the exact same model/agent setup agent in my experiments without looking at my code or asking me any questions.*
 - [ ] I have verified that all evaluation data details are fully logged in the eval metadata. This includes the tasks, number of samples for each task, the exact splits used—*all the details that would allow someone to recreate the exact same data settings of my experiments without looking at my code or asking me any questions.*
@@ -133,7 +133,11 @@ If the task relies on tool use, computer use, or other such capabilities:
 <summary>How does a good report look like?</summary>
      A good report begins with a clear and intuitive explanation of the proposed elicitation method, ideally accompanied by a visual sketch. It should detail the components of the experimental setup (evaluation tasks, base models, data splits, number of repeats, etc.), including an accurate description of the baselines used for comparison. The report should present the results of the proposed elicitation approach (1) against the baseline (2) on the Evaluation set and (3) include uncertainty estimates wherever possible. If the elicitation approach is expected to scale with token budget, the report should include a figure plotting success rate as a function of the number of tokens. Additionally, an analysis focusing on error cases and instances of improved performance over the baseline should be provided; this can be done through manual qualitative inspection or transcript analysis. The report should be well-organized and span 2-4 pages, plus an appendix. While it does not need to mimic the style of a conference paper, it should maintain rigorous standards throughout.
 </details>   
-<!-- - [ ] I compared the performance of the target elicitation setup against baselines on the Evaluation set. -->
+<details>
+  <summary>What's the bar for a project to be posted in #ru-elicitation and saved to the SharePoint?</summary>
+  
+  As long as you have completed a set of experiments and analyzed the results, you should post them. The reports or posts can be brief; the key is to share your findings. **Please share both negative results and positive results.** As mentioned earlier, elicitation work is often full of [tarpit ideas](https://www.ycombinator.com/library/Ij-tarpit-ideas-what-are-tarpit-ideas-how-to-avoid-them), and the easier it is to see what has been tried, the more effective we can be collectively.
+</details>
 
 - [ ] I produced a report detailing the overall results of the evaluation and any major red flags raised.
 - [ ] I uploaded it to the <a href="https://beisgov.sharepoint.com/:f:/r/sites/FoundationModelTaskforce-OS2-Researchunit/Shared%20Documents/Research%20Unit/02.%20Workstreams/8.%20Platform/7.%20Capability%20Elicitation/Projects%20-%20Summaries?csf=1&web=1&e=QK2YUY">Projects - Summaries</a> Sharepoint
