@@ -32,6 +32,35 @@ The ultimate goal is to standardise the approach to running elicitation experime
 
 - [ ] If I am fine-tuning a model, I have followed a classic ML setting, where the model is trained on a training set and validated on a validation set (e.g., two disjoint portions of the tuning set above). I have made sure that there is no overlap between the training (fine-tuning) set, the validation set, and the evaluation set.
 
+- [ ] I have confirmed that I have enough samples to conduct a conclusive study.
+     <details>
+     <summary>FAQ: How many samples are enough?</summary>
+  
+  These are the steps required to determine the necessary sample size for your study to have sufficient statistical power. 
+
+  1. **Identify Your Analysis Type:**
+     - Start by thinking of the exact analysis you want to run. For example, is it a t-test between condition A and condition B, are you measuring Pearson correlation between A and B, or are you running an ANOVA with multiple groups?
+
+  2. **Conduct a Pilot Study:**
+     - Run a pilot study on a small portion of the dataset.
+     - Conduct the analysis on the pilot data and extract the effect size (e.g., difference in the means divided by the pooled standard deviation if you do a t-test, or Cohen's _d_), the coefficient _r_ if you measure correlation, etc.
+
+  3. **Estimate Sample Size Using G*Power:**
+     - Download the analysis software [G*Power](https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower).
+     - Select the type of analysis (e.g., correlation), type the effect size, and ask for the sample size required. This will give you the sample size needed to detect your effect size with a significance level (α, commonly set to 0.05) and power (commonly set to 0.8).
+
+  4. **Alternative Approaches:**
+     - **If you cannot run a pilot study**: Look at previous literature, find studies that conducted similar experiments, and use their effect size for the sample size estimation.
+     - **If you have a more complicated analysis**: G*Power works for simple analyses like the ones mentioned above (you will see a drop-down list on the GUI). For more complicated analyses, you will need to run a power simulation yourself:
+
+       1. Choose a sample size.
+       2. Simulate many datasets with your effect size.
+       3. Analyze each simulated dataset with your analysis.
+       4. Count how many times you correctly detected the effect (power = number of significant results / total number).
+       5. Repeat with different sample sizes until you achieve a power of 0.80.
+
+</details>
+
 ## Eval logs
 
 Before iterating over the tuning set,  it is crucial to ensure that all required information is accurately logged. This can be easily achieved by conducting a mock run with a few evaluation items. In particular:
