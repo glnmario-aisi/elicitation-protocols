@@ -73,6 +73,7 @@ When working with a new model or task, we should start by understanding and addr
 #### Detect and fix egregious failures
 - [ ] I have looked at transcripts from cases where the model fails the task being evaluated, I fixed egregious failure modes, and I am confident that I know the major reasons for the remaining failures.
      - [ ] I have verified that the model is not failing due to refusals. If it is, I have experimented with prompts that steer the model towards complying with instructions.
+     - [ ] I have verified that prompt and chat messages are properly formatted (e.g., keeping indentation and paragraph structure intact).
      - [ ] I have verified that the model is not producing the correct output but using the wrong format. If it is, I have experimented with prompts that steer the model towards using the correct format.
      - [ ] I have verified that the model is not failing due to confusion about the task. If it is, I have experimented with clarifying the prompt.
      - [ ] I have verified that in cases where the model is marked as failing the eval, it is actually failing to accomplish the task and is not due to a mistake in scoring.
@@ -82,9 +83,11 @@ When working with a new model or task, we should start by understanding and addr
      
 #### Tool use
 If the task relies on tool use, computer use, or other such capabilities: 
-- [ ] I have made sure that the model has access to all the tools necessary for solving the task. 
+- [ ] I have made sure that the model has access to all the tools necessary for solving the task.
+- [ ] I have verified that the model uses the correct format (e.g., that it doesn't incorrectly escape newlines) when calling tools. This is a failure mode to look out for both in failed tool calls and "successful" tool calls where the arguments are incorrect.
 - [ ] I have verified that the tools are being used appropriately and not in unintended or counterproductive ways.
      - [ ] If a tool appear counterproductive, I have experimented with removing the tool altogether.
+- [ ] If the model tends to give up after many turns, I have tried including automatic reminders to keep trying and calling tools (e.g., if the model hasn't called a tool in its last *n* turns).
      
 #### Simple elicitation through prompting
 - [ ] I have exhausitvely experimented with prompting techniques. 
